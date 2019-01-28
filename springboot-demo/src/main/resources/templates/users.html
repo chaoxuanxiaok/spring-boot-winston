@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<!--这里讲名称空间改为thymeleaf 可以有语法提示-->
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>users页面</title>
+    <style type="text/css">
+        table {border-collapse: collapse;font-size: 14px;
+            width: 80%;margin: auto}
+        table, th, td {border: 1px solid darkslategray;padding: 10px}
+    </style>
+</head>
+<!--${}与el表达式类似，但是ognl的语法，比el表达式更强大-->
+<!--th-指令：利用h5的自定义属性实现，不支持h5，就用data-th-代替-->
+<!--idea中每次修改页面后需要 ctrl+shift+F9 对项目进行rebuild-->
+<body>
+    <div style="text-align: center">
+        <span style="color: darkslategray; font-size: 30px">欢迎光临！</span>
+        <hr/>
+        <table class="list">
+            <tr>
+                <th>id</th>
+                <th>姓名</th>
+                <th>年龄</th>
+                <th>性别</th>
+            </tr>
+            <!-- th:each 类似于c:foreach遍历集合 -->
+            <tr th:each="user : ${users}">
+                <!-- th:text 声明标签中的文本 -->
+                <td th:text="${user.id}">1</td>
+                <td th:text="${user.name}">张三</td>
+                <td th:text="${user.age}">20</td>
+                <td th:text="${user.sex}">男</td>
+                <!--<td th:text="${user.sex} == "female" ? '男': '女'">男</td>-->
+                <!--<td th:text="${#dates.format(user.birthday, 'yyyy-MM-dd')}">1980-02-30</td>-->
+            </tr>
+        </table>
+    </div>
+</body>
+</html>
