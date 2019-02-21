@@ -10,8 +10,8 @@ public class User implements Serializable {
 
     private static final long serialVersionUID =-637479967158798064L;
     private String name;
-    private String sex;
-    private String age;
+    private Integer sex;
+    private Integer age;
     private Long id;
 
     public Long getId() {
@@ -40,19 +40,19 @@ public class User implements Serializable {
                 '}';
     }
 
-    public String getSex() {
+    public Integer getSex() {
         return sex;
     }
 
-    public void setSex(String sex) {
+    public void setSex(Integer sex) {
         this.sex = sex;
     }
 
-    public String getAge() {
+    public Integer getAge() {
         return age;
     }
 
-    public void setAge(String age) {
+    public void setAge(Integer age) {
         this.age = age;
     }
 }

@@ -30,7 +30,12 @@ public class HelloController {
 
     @GetMapping("/selectUser")
     public User selectUser(){
-        return userService.queryById(8L);
+        User u1= new User();
+        u1.setAge(18);
+        u1.setId(123L);
+        u1.setName("longyun");
+        u1.setSex(1);
+        return u1;
     }
     }
 

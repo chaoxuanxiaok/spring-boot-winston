@@ -19,20 +19,20 @@ public class Thymeleaf_Controller {
     @GetMapping("/all")
     public String all(ModelMap modelMap){
         User u1= new User();
-        u1.setAge("18");
+        u1.setAge(18);
         u1.setId(123L);
         u1.setName("longyun");
-        u1.setSex("female");
+        u1.setSex(0);
         User u2= new User();
-        u2.setAge("13");
+        u2.setAge(13);
         u2.setId(123L);
         u2.setName("heyun");
-        u2.setSex("female");
+        u2.setSex(1);
         User u3= new User();
-        u3.setAge("14");
+        u3.setAge(14);
         u3.setId(123L);
         u3.setName("zhangyun");
-        u3.setSex("female");
+        u3.setSex(1);
         List<User> users=new ArrayList<User>();
         users.add(u1);
         users.add(u2);
