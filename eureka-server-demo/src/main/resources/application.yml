@@ -1,0 +1,18 @@
+# 与properties的区别：
+# 在properties文件里面的 .连接在yml文件里面全部换成 ：连接
+#   每一级之间必须换行，
+#   第二级开始应该进行一个Tab键的缩进，同级的就不需要进行缩进
+# 在yml文件里面
+    # 赋值那么必须是要在 "：" 后面进行一个空格键的缩进
+# 在yml文件里面
+    # 所有的配置，相同级别只能出现一次，如使用了spring这个级别，后边配置所有spring级别相关，不能再写一个spring级别
+server:
+  port: 10086 # 应用端口
+spring:
+  application:
+    name: eureka-server # 应用名称，会在Eureka中显示
+eureka:
+    register-with-eureka: false # 是否注册自己的信息到EurekaServer，默认是true
+    fetch-registry: false # 是否拉取其它服务的信息，默认是true
+    service-url:  # EurekaServer的地址，现在是自己的地址，如果是集群，需要加上其它Server的地址。
+      defaultZone: http://127.0.0.1:${server.port}/eureka
