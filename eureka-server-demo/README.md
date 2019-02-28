@@ -62,11 +62,28 @@
 
 5.将user-service注册到Eureka
     --服务上添加Eureka客户端依赖，客户端代码会自动把服务注册到EurekaServer中
-    （1）在user-service-demo中
+    在user-service-demo中
         1）pom.xml文件配置
             添加spring-cloud依赖
             添加spring仓库的地址
             添加Eureka客户端的依赖
         2）启动类上开启Eureka客户端功能
-        3）
+        3）配置application.properties文件
+            添加应用名称，以后作为应用的id来使用
+            添加Eureka相关配置
+            
+6.consumer-demo从Eureka订阅服务
+    --服务上添加Eureka客户端依赖，通过服务名称获取信息
+    在user-consumer-demo中
+    （1）pom.xml文件配置
+        添加spring-cloud依赖
+        添加spring仓库的地址
+        添加Eureka客户端的依赖
+    （2）启动类上开启Eureka客户端功能
+    （3）配置application.properties文件
+            添加应用名称，以后作为应用的id来使用
+            添加Eureka相关配置
+     (4)修改service层代码
+            用DiscoveryClient类的方法，根据服务名称，获取服务实例，区别于之前的硬编码
     
+7.配置文件中，开发阶段关闭自我保护模式

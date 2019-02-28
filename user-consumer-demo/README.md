@@ -64,4 +64,29 @@
             服务如何实现负载均衡
             服务如何实现统一配置
 ​	
+6.consumer-demo从Eureka订阅服务(确定已经注册服务了)
+      --服务上添加Eureka客户端依赖，通过服务名称获取信息
+      在user-consumer-demo中
+      （1）pom.xml文件配置
+          添加spring-cloud依赖
+          添加spring仓库的地址
+          添加Eureka客户端的依赖
+      （2）启动类上开启Eureka客户端功能
+      （3）配置application.properties文件
+              添加应用名称，以后作为应用的id来使用
+              添加Eureka相关配置
+       (4)修改mapper层代码
+              用DiscoveryClient类的方法，根据服务名称，获取服务实例，区别于之前的硬编码
 
+7.修改配置文件，控制 获取服务地址列表的频率
+
+8.在启动类注册RestTemplate类时，添加@LoadBalanced注解，使用Eureka的ribbon组件功能
+9.在service或mapper 直接通过服务名称去调用
+
+10.测试类 对RibbonLoadBalanceClient进行测试，追溯原理
+
+11.配置文件中更改负载均衡策略
+
+12.增强RestTemplate的重试能力----  一台服务宕机，重试调用另一台服务
+   配置文件
+   引入spring-retry依赖

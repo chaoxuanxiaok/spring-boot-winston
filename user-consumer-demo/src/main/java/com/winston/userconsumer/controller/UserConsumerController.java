@@ -25,6 +25,6 @@ public class UserConsumerController {
      */
     @GetMapping
     public List<User> consumer(@RequestParam("ids")List<Long> ids){
-        return this.userService.queryUserById(ids);
+        return this.userService.queryUserByIds(ids);
     }
 }
