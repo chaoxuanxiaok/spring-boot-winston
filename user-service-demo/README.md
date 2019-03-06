@@ -68,7 +68,9 @@
     将user-service注册到Eureka集群
         --配置文件中 将多个注册中心地址用逗号隔开
 7.修改配置文件，控制心跳时间（服务续约）
-8.
+
+8.为配合测试user-consumer-demo的熔断功能
+    在UserService中加入休眠线程，演示超时现象
 9.
 ​	
 

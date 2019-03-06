@@ -24,6 +24,7 @@ public class UserDao {
     private DiscoveryClient discoveryClient;    //注意这里导包 不要netflix，而是cloud.client.discovery包下的
 
     /**
+     * 第一阶段：采取硬编码去访问
      * 这种以前硬编码的做法，与下面一种注册服务后的方法比较
      */
 //    public User queryUserById(Long id){
@@ -32,6 +33,12 @@ public class UserDao {
 //        //远程调用指定地址的接口，封装成User对象
 //        return this.restTemplate.getForObject(url,User.class);
 //    }
+
+    /**
+     *第二阶段：采用 注册中心的发现客户端 去获取服务实例调用
+     * @param id
+     * @return
+     */
     public User queryUserById(Long id){
         //根据服务名称，获取服务实例，可能是集群，list来接收
         List<ServiceInstance> serviceInstances = discoveryClient.getInstances("user-service-demo");

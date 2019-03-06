@@ -15,7 +15,7 @@ public class UserController {
     private UserService userService;
 
     @GetMapping("/{id}")
-    public User queryById(@PathVariable("id") Long id) throws InterruptedException {//要用注解 绑定变量做为路径
+    public User queryById(@PathVariable("id") Long id){//要用注解 绑定变量做为路径
         return this.userService.queryById(id);
     }
 

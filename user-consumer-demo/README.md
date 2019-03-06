@@ -63,7 +63,8 @@
     （5）即使user-service形成集群，consumer还需自己实现负载均衡
             服务如何实现负载均衡
             服务如何实现统一配置
-​	
+​
+-----------------------订阅服务----------------------------------	
 6.consumer-demo从Eureka订阅服务(确定已经注册服务了)
       --服务上添加Eureka客户端依赖，通过服务名称获取信息
       在user-consumer-demo中
@@ -80,6 +81,7 @@
 
 7.修改配置文件，控制 获取服务地址列表的频率
 
+----------------------负载均衡-------------------------------------
 8.在启动类注册RestTemplate类时，添加@LoadBalanced注解，使用Eureka的ribbon组件功能
 9.在service或mapper 直接通过服务名称去调用
 
@@ -90,3 +92,37 @@
 12.增强RestTemplate的重试能力----  一台服务宕机，重试调用另一台服务
    配置文件
    引入spring-retry依赖
+
+----------------------熔断机制-------------------------------------   
+13.增加熔断机制
+    pom.xml中引入Hystrix依赖
+    在启动类上添加注解@EnableHystrix，开启熔断器功能
+    添加一个用来访问user服务的Dao，并声明一个失败时的回滚处理函数
+    在UserService中调用这个Dao，替代之前的调用    
+14.在配置文件中，设置Hystrix超时时间，需要大于Ribbon的超时时间
+
+---------------------声明式、模板式HTTP客户端调用---------------------
+15.增加Feign客户端
+    pom.xml中引入Feign依赖--openfeign
+    创建接口 xxxFeignClient，伪装成controller
+    修改UserService，不再调用UserDao，而是调用xxxFeignClient
+    启动类添加注解，开启Feign功能
+16.Feign中已经继承Ribbon依赖和自动配置，无需单独引入依赖和注册RestTemplate
+    直接在配置文件中通过 服务名.ribbon.xxx去对超时时间等参数配置
+17.Feign也集成了Hystrix
+    默认是关闭的，需要配置文件中开启
+    对Fallback进行配置
+        自定义一个类xxxFeignClientFallback，实现上面编写的xxxFeignClient，作为Fallback的处理类
+        在xxxFeignClient中，指定刚才编写的实现类
+18.请求压缩
+    配置文件中  开启请求压缩、开启响应压缩
+    配置文件中   对请求的数据类型、触发压缩的大小下限 进行设置
+19.日志级别
+    logging.level.xx=debug能设置日志级别，但对Feign客户端无效
+    @FeignClient修改的客户端在被代理时，会创建一个新的Feign.Logger实例，需要额外指定日志级别
+    （1）定义 logging.level.包名=debug
+    （2）创建配置类FeignConfig
+    （3）在xxxFeignClient中，指定配置类
+    
+---------------------------------------------------------------------------
+    

@@ -5,8 +5,6 @@ import com.winston.userservice.pojo.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.Random;
-
 /**
  * 这里简单demo，就直接使用 class，没有用interface
  * 用@Service注解，并没有指定 该类的实例名
@@ -19,11 +17,7 @@ public class UserService {
     @Autowired
     private UserMapper userMapper;
 
-    public User queryById(Long id) throws InterruptedException {//虽然userMapper没有定义该方法，编译时会自动生成
-        //加入0-2000毫秒的随机休眠，演示超时现象
-        Thread.sleep(
-                new Random().nextInt(2000)
-        );
+    public User queryById(Long id) {//虽然userMapper没有定义该方法，编译时会自动生成
         return this.userMapper.selectByPrimaryKey(id);
     }
 }
