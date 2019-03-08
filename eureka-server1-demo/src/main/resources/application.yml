@@ -11,7 +11,7 @@ server:
 spring:
   application:
     name: eureka-server1 # 应用名称，会在Eureka中显示
-eureka: # \u6CE8\u91CA\u4E0B\u9762\u4E24\u884C\uFF0C\u9ED8\u8BA4\u662Ftrue\uFF0C\u628A\u81EA\u5DF1\u6CE8\u518C\u5230\u6CE8\u518C\u4E2D\u5FC3
+eureka: # 注释下面两行，默认是true，把自己注册到注册中心
   client:
   #    register-with-eureka: false # 是否注册自己的信息到EurekaServer，默认是true
   #    fetch-registry: false # 是否拉取其它服务的信息，默认是true
