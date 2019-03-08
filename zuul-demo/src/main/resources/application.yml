@@ -28,7 +28,7 @@ eureka:
 
 # 比较常规的写法
 zuul:
-  prefix: /api    添加路由前缀  加了前缀以后，之后发起请求都要有前缀开头 /api/user-service-demo/user
+  prefix: /api    # 添加路由前缀  加了前缀以后，之后发起请求都要有前缀开头 /api/user-service-demo/user
   routes:
     user-service:                               # 这里是路由的id，随意填写
       path: /user-service-demo/**
